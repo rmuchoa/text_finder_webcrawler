@@ -10,8 +10,10 @@ repositories {
 
 dependencies {
     implementation(project(":crawl-domain"))
+    testImplementation(testFixtures(project(":crawl-domain")))
 
-    testRuntimeOnly(libs.junitPlatformLauncher)
+    testImplementation(libs.bundles.junitTestEcosystem)
+    testRuntimeOnly(libs.junitJupiterEngine)
 }
 
 tasks.test {

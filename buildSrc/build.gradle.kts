@@ -8,4 +8,7 @@ kotlin {
 
 dependencies {
     implementation(libs.kotlinGradlePlugin)
+
+    testImplementation(libs.bundles.junitTestEcosystem)
+    testRuntimeOnly(libs.junitJupiterEngine)
 }

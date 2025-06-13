@@ -11,11 +11,12 @@ repositories {
 
 dependencies {
     api(libs.springBootStarterWeb)
+    api(libs.jacksonKotlinModule)
 
     implementation(project(":crawl-application"))
+    implementation(project(":crawl-domain"))
 
     testImplementation(libs.springBootStarterTest)
-    testRuntimeOnly(libs.junitPlatformLauncher)
 }
 
 tasks.named("bootJar") {

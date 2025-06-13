@@ -7,28 +7,35 @@ kotlin = "2.1.20"
 kotlinxDatetime = "0.6.1"
 kotlinxSerializationJSON = "1.7.3"
 kotlinxCoroutines = "1.9.0"
-spring = "1.9.25"
 springBoot = "3.5.0"
-lombok = "1.18.26"
-junitPlatform = "1.9.2"
+jupiterJunit = "5.9.3"
+mockito = "5.4.0"
+hamcrest = "2.2"
+mockitoKotlin = "4.1.0"
+jacksonKotlin = "2.15.2"
+slf4j = "1.7.30"
 
 [libraries]
-kotlinGradlePlugin = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
-kotlinxDatetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.ref = "kotlinxDatetime" }
-kotlinxSerialization = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "kotlinxSerializationJSON" }
-kotlinxCoroutines = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutines" }
-springBootStarter = { module = "org.springframework.boot:spring-boot-starter", version.ref = "springBoot" }
-springBootStarterWeb = { module = "org.springframework.boot:spring-boot-starter-web", version.ref = "springBoot" }
-springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test", version.ref = "springBoot" }
-kotlinTestJunit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin" }
-junitPlatformLauncher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junitPlatform" }
-lombok = { module = "org.projectlombok:lombok", version.ref = "lombok" }
+kotlinGradlePlugin =    { module = "org.jetbrains.kotlin:kotlin-gradle-plugin",             version.ref = "kotlin" }
+kotlinxDatetime =       { module = "org.jetbrains.kotlinx:kotlinx-datetime",                version.ref = "kotlinxDatetime" }
+kotlinxSerialization =  { module = "org.jetbrains.kotlinx:kotlinx-serialization-json",      version.ref = "kotlinxSerializationJSON" }
+kotlinxCoroutines =     { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core",         version.ref = "kotlinxCoroutines" }
+springBootStarterWeb =  { module = "org.springframework.boot:spring-boot-starter-web",      version.ref = "springBoot" }
+springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test",     version.ref = "springBoot" }
+junitJupiterApi =       { module = "org.junit.jupiter:junit-jupiter-api",                   version.ref = "jupiterJunit" }
+junitJupiterEngine =    { module = "org.junit.jupiter:junit-jupiter-engine",                version.ref = "jupiterJunit" }
+mockitoModule =         { module = "org.mockito:mockito-core",                              version.ref = "mockito" }
+mockitoJunitJupiter =   { module = "org.mockito:mockito-junit-jupiter",                     version.ref = "mockito" }
+mockitoKotlinModule =   { module = "org.mockito.kotlin:mockito-kotlin",                     version.ref = "mockitoKotlin" }
+hamcrestModule =        { module = "org.hamcrest:hamcrest",                                 version.ref = "hamcrest" }
+jacksonKotlinModule =   { module = "com.fasterxml.jackson.module:jackson-module-kotlin",    version.ref = "jacksonKotlin" }
+slf4jModule =           { module = "org.slf4j:slf4j-simple",                                version.ref = "slf4j" }
 
 # Libraries can be bundled together for easier import
 [bundles]
-kotlinxEcosystem = ["kotlinxDatetime", "kotlinxSerialization", "kotlinxCoroutines"]
+kotlinxEcosystem =  [ "kotlinxDatetime", "kotlinxSerialization", "kotlinxCoroutines"]
+junitTestEcosystem = [ "junitJupiterApi", "mockitoModule", "mockitoJunitJupiter", "mockitoKotlinModule", "hamcrestModule" ]
 
 [plugins]
 kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
-springPlugin = { id = "plugin.spring", version.ref = "spring" }
-springBootPlugin = { id = "org.springframework.boot", version.ref = "springBoot" }
+springBootPlugin =          { id = "org.springframework.boot",                  version.ref = "springBoot" }
