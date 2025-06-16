@@ -28,7 +28,7 @@ class CrawlIntentorTest : AbstractTest() {
     }
 
     @Test
-    @DisplayName("Deve pedir ao repositório para salvar a CrawlIntention quando intentar a partir de uma Intention informada")
+    @DisplayName("Deve pedir ao repositório para salvar uma CrawlIntention quando intentar a partir de uma Intention informada")
     fun shouldAskRepositoryToSaveIntentionWhenIntentingANewIntention() {
         val intention: CrawlIntention = CrawlIntention.of(defaultKeyword)
         `when`(repository.save(eq(intention))).thenReturn(intention)

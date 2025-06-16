@@ -8,6 +8,7 @@ kotlinxDatetime = "0.6.1"
 kotlinxSerializationJSON = "1.7.3"
 kotlinxCoroutines = "1.9.0"
 springBoot = "3.5.0"
+awsSdk = "2.25.11"
 jupiterJunit = "5.9.3"
 mockito = "5.4.0"
 hamcrest = "2.2"
@@ -16,25 +17,30 @@ jacksonKotlin = "2.15.2"
 slf4j = "1.7.30"
 
 [libraries]
-kotlinGradlePlugin =    { module = "org.jetbrains.kotlin:kotlin-gradle-plugin",             version.ref = "kotlin" }
-kotlinxDatetime =       { module = "org.jetbrains.kotlinx:kotlinx-datetime",                version.ref = "kotlinxDatetime" }
-kotlinxSerialization =  { module = "org.jetbrains.kotlinx:kotlinx-serialization-json",      version.ref = "kotlinxSerializationJSON" }
-kotlinxCoroutines =     { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core",         version.ref = "kotlinxCoroutines" }
-springBootStarterWeb =  { module = "org.springframework.boot:spring-boot-starter-web",      version.ref = "springBoot" }
-springBootStarterTest = { module = "org.springframework.boot:spring-boot-starter-test",     version.ref = "springBoot" }
-junitJupiterApi =       { module = "org.junit.jupiter:junit-jupiter-api",                   version.ref = "jupiterJunit" }
-junitJupiterEngine =    { module = "org.junit.jupiter:junit-jupiter-engine",                version.ref = "jupiterJunit" }
-mockitoModule =         { module = "org.mockito:mockito-core",                              version.ref = "mockito" }
-mockitoJunitJupiter =   { module = "org.mockito:mockito-junit-jupiter",                     version.ref = "mockito" }
-mockitoKotlinModule =   { module = "org.mockito.kotlin:mockito-kotlin",                     version.ref = "mockitoKotlin" }
-hamcrestModule =        { module = "org.hamcrest:hamcrest",                                 version.ref = "hamcrest" }
-jacksonKotlinModule =   { module = "com.fasterxml.jackson.module:jackson-module-kotlin",    version.ref = "jacksonKotlin" }
-slf4jModule =           { module = "org.slf4j:slf4j-simple",                                version.ref = "slf4j" }
+kotlinGradlePlugin =            { module = "org.jetbrains.kotlin:kotlin-gradle-plugin",             version.ref = "kotlin" }
+kotlinxDatetime =               { module = "org.jetbrains.kotlinx:kotlinx-datetime",                version.ref = "kotlinxDatetime" }
+kotlinxSerialization =          { module = "org.jetbrains.kotlinx:kotlinx-serialization-json",      version.ref = "kotlinxSerializationJSON" }
+kotlinxCoroutines =             { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core",         version.ref = "kotlinxCoroutines" }
+springBootStarter =             { module = "org.springframework.boot:spring-boot-starter",          version.ref = "springBoot" }
+springBootStarterWeb =          { module = "org.springframework.boot:spring-boot-starter-web",      version.ref = "springBoot" }
+springBootStarterTest =         { module = "org.springframework.boot:spring-boot-starter-test",     version.ref = "springBoot" }
+awsSdkDynamodbEnhanceModule =   { module = "software.amazon.awssdk:dynamodb-enhanced",              version.ref = "awsSdk" }
+awsSdkDynamodbModule =          { module = "software.amazon.awssdk:dynamodb",                       version.ref = "awsSdk" }
+awsSdkSqsModule =               { module = "software.amazon.awssdk:dynamodb",                       version.ref = "awsSdk" }
+junitJupiterApi =               { module = "org.junit.jupiter:junit-jupiter-api",                   version.ref = "jupiterJunit" }
+junitJupiterEngine =            { module = "org.junit.jupiter:junit-jupiter-engine",                version.ref = "jupiterJunit" }
+mockitoModule =                 { module = "org.mockito:mockito-core",                              version.ref = "mockito" }
+mockitoJunitJupiter =           { module = "org.mockito:mockito-junit-jupiter",                     version.ref = "mockito" }
+mockitoKotlinModule =           { module = "org.mockito.kotlin:mockito-kotlin",                     version.ref = "mockitoKotlin" }
+hamcrestModule =                { module = "org.hamcrest:hamcrest",                                 version.ref = "hamcrest" }
+jacksonKotlinModule =           { module = "com.fasterxml.jackson.module:jackson-module-kotlin",    version.ref = "jacksonKotlin" }
+slf4jModule =                   { module = "org.slf4j:slf4j-simple",                                version.ref = "slf4j" }
 
 # Libraries can be bundled together for easier import
 [bundles]
-kotlinxEcosystem =  [ "kotlinxDatetime", "kotlinxSerialization", "kotlinxCoroutines"]
-junitTestEcosystem = [ "junitJupiterApi", "mockitoModule", "mockitoJunitJupiter", "mockitoKotlinModule", "hamcrestModule" ]
+kotlinxEcosystem =      [ "kotlinxDatetime", "kotlinxSerialization", "kotlinxCoroutines"]
+junitTestEcosystem =    [ "junitJupiterApi", "mockitoModule", "mockitoJunitJupiter", "mockitoKotlinModule", "hamcrestModule" ]
+awssdkEcosystem =       [ "awsSdkDynamodbModule", "awsSdkSqsModule" ]
 
 [plugins]
 kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

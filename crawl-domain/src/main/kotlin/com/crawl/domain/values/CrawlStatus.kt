@@ -1,10 +1,10 @@
 package com.crawl.domain.values
 
-import com.crawl.domain.values.CrawlStatus.entries
-
 enum class CrawlStatus(val status: String) {
     ACTIVE("active"),
     DONE("done");
+
+    override fun toString(): String = status
 
     companion object {
         fun of(status: String?): CrawlStatus? {

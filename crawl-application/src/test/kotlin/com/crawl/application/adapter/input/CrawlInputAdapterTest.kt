@@ -15,6 +15,7 @@ import org.hamcrest.Matchers.hasProperty
 import org.hamcrest.Matchers.instanceOf
 import org.hamcrest.Matchers.matchesPattern
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
 import org.mockito.kotlin.any
@@ -38,6 +39,7 @@ class CrawlInputAdapterTest: AbstractTest() {
     }
 
     @Test
+    @DisplayName("Deve criar uma CrawlIntention com base no CrawlRequest informado e intentar uma intention através de um CrawlIntentor")
     fun shouldCreateCrawlIntentionAndExecuteIntentionPassingKeywordAndGeneratingRandomId() {
         val keyword = "teste"
         val request = CrawlRequest(keyword)
@@ -64,6 +66,7 @@ class CrawlInputAdapterTest: AbstractTest() {
     }
 
     @Test
+    @DisplayName("Deve criar um CrawlIntention com base no CrawlRequest informado e retornar um RequestedCrawl contendo o id gerado randomicamente")
     fun shouldCreateCrawlIntentionAndReturningRandomId() {
         val keyword = "teste"
         val request = CrawlRequest(keyword)
