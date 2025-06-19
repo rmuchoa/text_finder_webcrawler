@@ -26,7 +26,7 @@ springBootStarterWeb =          { module = "org.springframework.boot:spring-boot
 springBootStarterTest =         { module = "org.springframework.boot:spring-boot-starter-test",     version.ref = "springBoot" }
 awsSdkDynamodbEnhanceModule =   { module = "software.amazon.awssdk:dynamodb-enhanced",              version.ref = "awsSdk" }
 awsSdkDynamodbModule =          { module = "software.amazon.awssdk:dynamodb",                       version.ref = "awsSdk" }
-awsSdkSqsModule =               { module = "software.amazon.awssdk:dynamodb",                       version.ref = "awsSdk" }
+awsSdkSqsModule =               { module = "software.amazon.awssdk:sqs",                            version.ref = "awsSdk" }
 junitJupiterApi =               { module = "org.junit.jupiter:junit-jupiter-api",                   version.ref = "jupiterJunit" }
 junitJupiterEngine =            { module = "org.junit.jupiter:junit-jupiter-engine",                version.ref = "jupiterJunit" }
 mockitoModule =                 { module = "org.mockito:mockito-core",                              version.ref = "mockito" }
@@ -40,7 +40,7 @@ slf4jModule =                   { module = "org.slf4j:slf4j-simple",            
 [bundles]
 kotlinxEcosystem =      [ "kotlinxDatetime", "kotlinxSerialization", "kotlinxCoroutines"]
 junitTestEcosystem =    [ "junitJupiterApi", "mockitoModule", "mockitoJunitJupiter", "mockitoKotlinModule", "hamcrestModule" ]
-awssdkEcosystem =       [ "awsSdkDynamodbModule", "awsSdkSqsModule" ]
+awsSdkEcosystem =       [ "awsSdkDynamodbEnhanceModule", "awsSdkDynamodbModule", "awsSdkSqsModule" ]
 
 [plugins]
 kotlinPluginSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }

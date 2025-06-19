@@ -11,10 +11,8 @@ plugins {
 
 include(":crawl-app")
 include(":crawl-infrastructure")
+include(":crawl-application")
+include(":crawl-domain")
+include(":crawl-domain:testFixtures")
 
 rootProject.name = "text_finder_webcrawler"
-include("crawl-application")
-include("crawl-application")
-include("crawl-domain")
-include("crawl-domain:testFixtures")
-include("crawl-domain:testFixtures")

@@ -1,5 +1,8 @@
 package com.crawl.domain.values
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 @ConsistentCopyVisibility
 data class Id internal constructor(val id: String) {
 

@@ -12,21 +12,21 @@ import software.amazon.awssdk.services.dynamodb.DynamoDbClient
 import java.net.URI
 
 @Configuration
-@EnableConfigurationProperties(DynamoDBProperties::class)
+@EnableConfigurationProperties(AwsProperties::class)
 open class DynamoDBConfig {
 
     @Bean
     open fun dynamoDbClient(
-        properties: DynamoDBProperties): DynamoDbClient {
+        properties: AwsProperties): DynamoDbClient {
 
         return DynamoDbClient.builder()
-            .region(Region.of("us-east-1"))
+            .region(Region.of(properties.region))
             .credentialsProvider(
                 StaticCredentialsProvider.create(
                 AwsBasicCredentials.create(
                     properties.credentials.accessKey,
                     properties.credentials.secretKey)))
-            .endpointOverride(URI.create(properties.endpoint))
+            .endpointOverride(URI.create(properties.dynamodb.endpoint))
             .build()
     }
 

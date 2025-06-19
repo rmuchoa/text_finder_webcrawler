@@ -1,5 +1,7 @@
 plugins {
     id("buildsrc.convention.kotlin-jvm")
+    alias(libs.plugins.kotlinPluginSerialization)
+    alias(libs.plugins.springBootPlugin)
 
     application
 }
@@ -9,5 +11,13 @@ dependencies {
 }
 
 application {
-    mainClass = "com.web.app.AppKt"
+    mainClass.set("com.crawl.app.AppKt")
+}
+
+tasks.bootJar {
+    archiveFileName.set("app.jar")
+}
+
+tasks.jar {
+    enabled = false
 }
