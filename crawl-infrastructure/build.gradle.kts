@@ -12,9 +12,8 @@ repositories {
 dependencies {
     api(libs.springBootStarterWeb)
     api(libs.springBootStarter)
-    api(libs.awsSdkDynamodbEnhanceModule)
-    api(libs.awsSdkDynamodbModule)
-    api(libs.awsSdkSqsModule)
+    api(libs.springCloudAwsSqsStarter)
+    api(libs.springCloudAwsDynamodbStarter)
     api(libs.jacksonKotlinModule)
 
     implementation(project(":crawl-application"))

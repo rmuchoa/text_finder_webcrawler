@@ -1,17 +1,13 @@
 spring:
   cloud:
     aws:
+      region:
+        static: "${AWS_REGION:us-east-1}"
       credentials:
         access-key: "${AWS_ACCESS_KEY_ID:aws_access_key}"
         secret-key: "${AWS_SECRET_ACCESS_KEY:aws_secret_key}"
-
-aws:
-  region: "${AWS_REGION:us-east-1}"
-  credentials:
-    access-key: "${AWS_ACCESS_KEY_ID:aws_access_key}"
-    secret-key: "${AWS_SECRET_ACCESS_KEY:aws_secret_key}"
-  dynamodb:
-    endpoint: "${DYNAMODB_ENDPOINT:http://localhost:4566}"
-  sqs:
-    endpoint: "${SQS_ENDPOINT:http://localhost:4566}"
-    queue-url: "${CRAWL_NOTIFICATION_QUEUE_URL:http://localhost:4566/000000000000/CrawlNotificationQueue}"
+      sqs:
+        endpoint: "${SQS_ENDPOINT:http://localhost:4566}"
+        crawl-queue: "CrawlNotificationQueue"
+      dynamodb:
+        endpoint: "${DYNAMODB_ENDPOINT:http://localhost:4566}"
