@@ -7,5 +7,5 @@ object RandomStringUtils {
     fun getRandomAlfanumericString(maxLength: Long) =
         (1..maxLength)
             .map { ALPHANUMERIC_SAMPLE.random() }
-            .joinToString("")
+            .joinToString(separator = "")
 }

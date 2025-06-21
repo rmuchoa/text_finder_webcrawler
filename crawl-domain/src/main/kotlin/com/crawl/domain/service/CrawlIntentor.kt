@@ -19,7 +19,7 @@ open class CrawlIntentor(
         val intentedCrawl: CrawlIntention = repository.save(crawlIntention)
         log.info("CRAWL: Stored the crawl intention by id ${crawlIntention.id}!")
 
-        deliver.notifyIntentedCrawl(intentedCrawl.getId())
+        deliver.notifyIntentedCrawl(id = intentedCrawl.getId())
         log.info("CRAWL: Notified the crawl intention id: ${crawlIntention.id}!")
 
         return intentedCrawl

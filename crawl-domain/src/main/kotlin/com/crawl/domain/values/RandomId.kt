@@ -12,12 +12,12 @@ data class RandomId internal constructor(val id: CrawlId) {
     companion object {
         internal const val RANDOM_ID_MAX_LENGTH: Long = 8L
 
-        fun of() = RandomId(CrawlId.Companion.generateCrawlRandomId())
+        fun of() = RandomId(id = CrawlId.Companion.generateCrawlRandomId())
     }
 }
 
 private fun CrawlId.Companion.generateCrawlRandomId() =
-    CrawlId.of(RandomId.Companion.generateRandomId())
+    CrawlId.of(id = RandomId.Companion.generateRandomId())
 
 private fun RandomId.Companion.generateRandomId() =
-    RandomStringUtils.getRandomAlfanumericString(RANDOM_ID_MAX_LENGTH)
+    RandomStringUtils.getRandomAlfanumericString(maxLength = RANDOM_ID_MAX_LENGTH)

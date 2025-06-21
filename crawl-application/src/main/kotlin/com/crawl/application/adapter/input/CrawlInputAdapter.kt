@@ -9,7 +9,8 @@ import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 
 open class CrawlInputAdapter(
-    val crawlIntentor: CrawlIntentor): CrawlInputPort {
+    val crawlIntentor: CrawlIntentor):
+    CrawlInputPort {
 
     val log: Logger = LoggerFactory.getLogger(CrawlInputAdapter::class.java)
 
@@ -17,13 +18,13 @@ open class CrawlInputAdapter(
 
         log.debug("CRAWL: Treating a crawl requisition by keyword ${request.keyword}!")
 
-        val crawlIntention: CrawlIntention = CrawlIntention.of(request.keyword)
+        val crawlIntention: CrawlIntention = CrawlIntention.of(keywordValue = request.keyword)
         log.info("CRAWL: Created a crawl intention with id ${crawlIntention.id}! keyword: ${crawlIntention.keyword}")
 
         val startedCrawl: CrawlIntention = crawlIntentor.intent(crawlIntention)
         log.debug("CRAWL: Registered a crawl requisition by keyword ${request.keyword}!")
 
-        return RequestedCrawl.of(startedCrawl.getId());
+        return RequestedCrawl.of(id = startedCrawl.getId());
     }
 
 }

@@ -8,5 +8,5 @@ import org.springframework.stereotype.Service
 @Service
 class CrawlIntentorImpl(
     repository: CrawlRepositoryPort,
-    broker: CrawlNotificationDeliverPort) :
-    CrawlIntentor(repository, broker)
+    deliver: CrawlNotificationDeliverPort) :
+    CrawlIntentor(repository, deliver)

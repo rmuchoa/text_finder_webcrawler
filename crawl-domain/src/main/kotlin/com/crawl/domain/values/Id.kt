@@ -9,6 +9,6 @@ data class Id internal constructor(val id: String) {
     override fun toString(): String = id
 
     companion object {
-        fun of(id: String) = Id(id)
+        fun of(id: String) = Id(id = id)
     }
 }

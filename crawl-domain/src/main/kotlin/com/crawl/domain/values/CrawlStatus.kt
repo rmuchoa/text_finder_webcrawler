@@ -1,5 +1,7 @@
 package com.crawl.domain.values
 
+import com.crawl.domain.exception.InvalidStatusException
+
 enum class CrawlStatus(val status: String) {
     ACTIVE("active"),
     DONE("done");
@@ -7,12 +9,12 @@ enum class CrawlStatus(val status: String) {
     override fun toString(): String = status
 
     companion object {
-        fun of(status: String?): CrawlStatus? {
-            if (status == null)
-                return null;
+        fun of(status: String?): CrawlStatus {
 
             return entries.find {
-                it.name.equals(status, ignoreCase = true) }
+                status != null && it.name.equals(other = status, ignoreCase = true)
+            } ?: throw InvalidStatusException(
+                message = "Invalid informed status not between active/done values")
         }
     }
 }

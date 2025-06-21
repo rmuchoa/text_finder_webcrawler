@@ -14,8 +14,8 @@ data class CrawlIntention internal constructor(
 
     companion object{
         fun of(keywordValue: String?) = CrawlIntention(
-            RandomId.of(),
-            CrawlStatus.ACTIVE,
-            Keyword.of(keywordValue))
+            id = RandomId.of(),
+            status = CrawlStatus.ACTIVE,
+            Keyword.of(keyword = keywordValue))
     }
 }
