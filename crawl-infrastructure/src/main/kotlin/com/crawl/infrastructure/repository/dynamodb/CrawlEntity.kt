@@ -1,5 +1,6 @@
 package com.crawl.infrastructure.repository.dynamodb
 
+import com.crawl.domain.entity.Crawl
 import com.crawl.domain.entity.CrawlIntention
 import com.crawl.domain.values.CrawlStatus
 import com.crawl.domain.values.Id
@@ -12,21 +13,49 @@ data class CrawlEntity(
     @get:DynamoDbPartitionKey var id: String,
     var status: String,
     var keyword: String,
-    var partialResult: Boolean = true,
-    var scrapedUrls: List<String> = ArrayList()) {
+    var partialResult: Boolean,
+    var scrapedUrls: List<String>) {
 
-    constructor() : this(id = "", status = "", keyword = "")
+    constructor() : this(
+        id = "",
+        status = "",
+        keyword = "",
+        partialResult = true,
+        scrapedUrls = ArrayList())
 
     companion object {
         fun of(crawlIntention: CrawlIntention) = of(
-            crawlIntention.getId(),
-            crawlIntention.status,
-            crawlIntention.keyword)
+            id = crawlIntention.getId(),
+            status = crawlIntention.status,
+            keyword = crawlIntention.keyword)
 
-        fun of(id: Id, status: CrawlStatus, keyword: Keyword) = CrawlEntity(
+        fun of(crawl: Crawl) = of(
+            id = crawl.id,
+            status = crawl.status,
+            keyword = crawl.keyword,
+        )
+
+        fun of(
+            id: Id,
+            status: CrawlStatus,
+            keyword: Keyword) = CrawlEntity(
             id = id.toString(),
             status = status.toString(),
-            keyword = keyword.toString())
+            keyword = keyword.toString(),
+            partialResult = true,
+            scrapedUrls = ArrayList())
+
+        fun of(
+            id: Id,
+            status: CrawlStatus,
+            keyword: Keyword,
+            partialResult: Boolean,
+            scrapedUrls: List<String>) = CrawlEntity(
+            id = id.toString(),
+            status = status.toString(),
+            keyword = keyword.toString(),
+            partialResult = partialResult,
+            scrapedUrls = scrapedUrls)
     }
 
 }

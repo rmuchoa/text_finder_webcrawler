@@ -1,8 +1,7 @@
-package com.crawl.infrastructure.infrastructure
+package com.crawl.infrastructure.notification
 
 import com.crawl.domain.AbstractTest
 import com.crawl.domain.values.Id
-import com.crawl.infrastructure.notification.CrawlNotificationDeliverImpl
 import com.crawl.infrastructure.notification.sqs.SqsAsyncNotificationBroker
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.equalTo
@@ -16,8 +15,6 @@ import org.mockito.Mockito.verify
 import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.argumentCaptor
 import org.mockito.kotlin.eq
-
-private const val QUEUE_NAME = "FAKE_QUEUE_NAME"
 
 @ExtendWith(MockitoExtension::class)
 class CrawlNotificationDeliverImplTest : AbstractTest() {
@@ -41,8 +38,8 @@ class CrawlNotificationDeliverImplTest : AbstractTest() {
 
         verify(sqsAsyncNotificationBroker, atLeastOnce())
             .notifyMessage(
-                notificationCaptor.capture(),
-                eq(QUEUE_NAME))
+                message = notificationCaptor.capture(),
+                queueName = eq(QUEUE_NAME))
 
         assertThat(notificationCaptor.firstValue,
             equalTo("{\"id\":\"${ defaultId }\"}"))

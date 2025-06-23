@@ -50,12 +50,14 @@ abstract class AbstractTest {
         protected const val hasUrl: Boolean = true
         protected const val notFinished: Boolean = true
         protected const val partialResult: Boolean = true
+        protected const val notPartialResult: Boolean = false
         protected const val defaultId: String = "a1b2c3d4"
         protected const val defaultKeyword: String = "security"
         protected const val defaultFileName: String = "fileName.html"
         protected const val myLink: String = "http://myurl.com"
         protected const val mySecureLink: String = "https://mysecurelink.com"
         protected const val someExternalLink: String = "http://someexternal.com/link"
+        protected const val QUEUE_NAME = "FAKE_QUEUE_NAME"
     }
 
 }
