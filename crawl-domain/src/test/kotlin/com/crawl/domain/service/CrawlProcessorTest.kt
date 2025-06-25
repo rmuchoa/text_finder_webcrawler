@@ -20,7 +20,6 @@ import org.mockito.Mockito.verify
 import org.mockito.Mockito.`when`
 import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.eq
-import java.util.Arrays.asList
 
 @ExtendWith(MockitoExtension::class)
 class CrawlProcessorTest : AbstractTest() {
@@ -38,7 +37,7 @@ class CrawlProcessorTest : AbstractTest() {
     @DisplayName("Deve pedir para o repositório carregar Crawl pelo id quando carregar e processar CrawlId")
     fun shouldAskRepositoryToLoadCrawlByIdWhenLoadAndProcessCrawlId() {
         val crawlId = Id.of(defaultId)
-        val crawl = Crawl.of(defaultId, status = CrawlStatus.ACTIVE.status, defaultKeyword, notPartialResult, scrapedUrls = asList())
+        val crawl = Crawl.of(defaultId, status = CrawlStatus.ACTIVE.status, defaultKeyword, notPartialResult, scrapedUrls = listOf())
         `when`(repository.load(crawlId = eq(crawlId))).thenReturn(crawl)
         `when`(crawlScrapeExecutor.executeScrapeFor(crawl = eq(crawl))).thenReturn(crawl.result)
 
@@ -51,7 +50,7 @@ class CrawlProcessorTest : AbstractTest() {
     @DisplayName("Deve pedir ao CrawlScrapeExecutor para executar scrape para o Crawl encontrado quando carregar e processar CrawlId")
     fun shouldAskCrawlScrapeExecutorToExecuteScrapeForFoundCrawlWhenLoadAndProcessCrawlId() {
         val crawlId = Id.of(defaultId)
-        val crawl = Crawl.of(defaultId, status = CrawlStatus.ACTIVE.status, defaultKeyword, notPartialResult, scrapedUrls = asList())
+        val crawl = Crawl.of(defaultId, status = CrawlStatus.ACTIVE.status, defaultKeyword, notPartialResult, scrapedUrls = listOf())
         `when`(repository.load(crawlId = eq(crawlId))).thenReturn(crawl)
         `when`(crawlScrapeExecutor.executeScrapeFor(crawl = eq(crawl))).thenReturn(crawl.result)
 
@@ -64,7 +63,7 @@ class CrawlProcessorTest : AbstractTest() {
     @DisplayName("Deve lançar UnfinishedWebCrawlingException quando receber da execução de scrape um CrawlResult que tenha resultado parcial")
     fun shouldThrowUnfinishedWebCrawlingExceptionWhenReceiveFromExecuteScrapeForCrawlResultThatHasPartialResult() {
         val crawlId = Id.of(defaultId)
-        val crawl = Crawl.of(defaultId, status = CrawlStatus.ACTIVE.status, defaultKeyword, partialResult, scrapedUrls = asList())
+        val crawl = Crawl.of(defaultId, status = CrawlStatus.ACTIVE.status, defaultKeyword, partialResult, scrapedUrls = listOf())
         `when`(repository.load(crawlId = eq(crawlId))).thenReturn(crawl)
         `when`(crawlScrapeExecutor.executeScrapeFor(crawl = eq(crawl))).thenReturn(crawl.result)
 

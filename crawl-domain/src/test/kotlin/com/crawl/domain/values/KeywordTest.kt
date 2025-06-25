@@ -20,7 +20,7 @@ class KeywordTest : AbstractTest() {
     fun shouldThrowInvalidKeywordExceptionWhenCreateAKeywordWithNullValue() {
         val thrown: InvalidKeywordException? = assertThrows(
             InvalidKeywordException::class.java,
-            Executable { Keyword.of(null) })
+            Executable { Keyword.of(keyword = null) })
 
         assertThat(thrown,
             hasProperty("message",
@@ -32,7 +32,7 @@ class KeywordTest : AbstractTest() {
     fun shouldThrowInvalidKeywordExceptionWhenCreateAKeywordWithBlankStringValue() {
         val thrown: InvalidKeywordException? = assertThrows(
             InvalidKeywordException::class.java,
-            Executable { Keyword.of("") })
+            Executable { Keyword.of(keyword = "") })
 
         assertThat(thrown,
             hasProperty("message",
@@ -44,7 +44,7 @@ class KeywordTest : AbstractTest() {
     fun shouldThrowInvalidKeywordExceptionWhenCreateAKeywordWithStringValueShorterThanFourCharacters() {
         val thrown: InvalidKeywordException? = assertThrows(
             InvalidKeywordException::class.java,
-            Executable { Keyword.of("012") })
+            Executable { Keyword.of(keyword = "012") })
 
         assertThat(thrown,
             hasProperty("message",
@@ -56,7 +56,7 @@ class KeywordTest : AbstractTest() {
     fun shouldThrowInvalidKeywordExceptionWhenCreateAKeywordWithStringValueLongerThanThirtyTwoCharacters() {
         val thrown: InvalidKeywordException? = assertThrows(
             InvalidKeywordException::class.java,
-            Executable { Keyword.of("Lorem ipsum dolor sit amet. Et quam magnam rem atque aliquam.") })
+            Executable { Keyword.of(keyword = "Lorem ipsum dolor sit amet. Et quam magnam rem atque aliquam.") })
 
         assertThat(thrown,
             hasProperty("message",
@@ -66,11 +66,41 @@ class KeywordTest : AbstractTest() {
     @Test
     @DisplayName("Deve criar um objeto Keyword contendo a keyword informada como String")
     fun shouldCreateKeywordWithValidKeywordValue() {
-        val keyword = Keyword.of(defaultKeyword)
+        val keyword = Keyword.of(keyword = defaultKeyword)
 
         assertThat(keyword,
             hasProperty("keyword",
                 equalTo(defaultKeyword)))
+    }
+
+    @Test
+    @DisplayName("Deve retornar flag falsamente encontrado pelo Keyword ao checar a própria presença em um conteúdo vazio de uma String que jamais poderia conter a Keyword")
+    fun shouldReturnFalsyFoundFlagByKeywordWhenCheckingItSelfPresenceOnEmptyStringContentThatCouldNeverContainTheKeyword() {
+        val keyword = Keyword.of(keyword = defaultKeyword)
+
+        val result = keyword.checkPresenceOn(pageContent = emptyStringContent)
+
+        assertThat(result, equalTo(hasNotFound))
+    }
+
+    @Test
+    @DisplayName("Deve retornar flag falsamente encontrado pelo Keyword ao checar a própria presença em um conteúdo String que na verdade não contém a Keyword")
+    fun shouldReturnFalsyFoundFlagByKeywordWhenCheckingItSelfPresenceOnStringContentThatActuallyDoesNotContainTheKeyword() {
+        val keyword = Keyword.of(keyword = defaultKeyword)
+
+        val result = keyword.checkPresenceOn(pageContent = defaultKeywordNotPresentContent)
+
+        assertThat(result, equalTo(hasNotFound))
+    }
+
+    @Test
+    @DisplayName("Deve retornar flag verdadeiramente encontrado pelo Keyword ao checar a própria presença em um conteúdo String que realmente contém a Keyword")
+    fun shouldReturnTrulyFoundFlagByKeywordWhenCheckingItSelfPresenceOnStringContentThatReallyContainsKeyword() {
+        val keyword = Keyword.of(keyword = defaultKeyword)
+
+        val result = keyword.checkPresenceOn(pageContent = defaultKeywordPresentContent)
+
+        assertThat(result, equalTo(hasFound))
     }
 
 }

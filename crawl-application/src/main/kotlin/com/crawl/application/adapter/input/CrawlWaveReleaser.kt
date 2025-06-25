@@ -10,20 +10,28 @@ import org.slf4j.LoggerFactory
 
 open class CrawlWaveReleaser(
     val crawlProcessor: CrawlProcessor,
-    val notificationDeliver: CrawlNotificationDeliver):
-    CrawlWaveReleaserPort {
+    val notificationDeliver: CrawlNotificationDeliver
+) : CrawlWaveReleaserPort {
 
     var log: Logger = LoggerFactory.getLogger(CrawlWaveReleaser::class.java)
 
     override fun releaseWave(crawlId: Id) {
-        try {
-
+        runCatching {
+            log.info("CRAWL WAVE: New wave released to load and process crawl {}.", crawlId)
             crawlProcessor.loadAndProcess(crawlId)
+        }.onFailure {
+            treatFailures(throwable = it, crawlId)
+        }
+    }
 
-        } catch (exception: UnfinishedWebCrawlingException) {
-
-            log.warn("UNFINISHED: Found crawl needs at least once more rescraping to get full result! message: {}", exception.message)
+    fun treatFailures(throwable: Throwable, crawlId: Id) {
+        throwable.takeIf { it is UnfinishedWebCrawlingException }?.run {
+            log.warn("UNFINISHED: Found crawl needs at least once more rescraping to get full result! message: {}", message)
             notificationDeliver.requeueUnfinishedCrawl(crawlId)
+        }
+
+        throwable.takeUnless { it is UnfinishedWebCrawlingException }?.run {
+            log.error("CRAWL WAVE: Some problem occurred on waving crawl {} process. {}", crawlId, message)
         }
     }
 

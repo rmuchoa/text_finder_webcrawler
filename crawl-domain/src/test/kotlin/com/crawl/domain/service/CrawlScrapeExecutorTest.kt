@@ -25,7 +25,6 @@ import org.mockito.Mockito.`when`
 import org.mockito.junit.jupiter.MockitoExtension
 import org.mockito.kotlin.argumentCaptor
 import org.mockito.kotlin.eq
-import java.util.Arrays.asList
 
 @ExtendWith(MockitoExtension::class)
 class CrawlScrapeExecutorTest : AbstractTest() {
@@ -43,7 +42,7 @@ class CrawlScrapeExecutorTest : AbstractTest() {
     @Test
     @DisplayName("Deve pedir ao WebScraper para iniciar scraping a partir da Keyword do Crawl quando executar scrape para um dado Crawl")
     fun shouldAskWebScraperToStartKeywordScrapingWhenExecutingScrapeForGivenCrawl() {
-        val crawl = Crawl.of(defaultId, status = CrawlStatus.ACTIVE.status, defaultKeyword, partialResult, scrapedUrls = asList())
+        val crawl = Crawl.of(defaultId, status = CrawlStatus.ACTIVE.status, defaultKeyword, partialResult, scrapedUrls = listOf())
         `when`(webScraper.startKeywordScraping(keyword = eq(crawl.keyword))).thenReturn(crawl.result)
 
         crawlScrapeExecutor.executeScrapeFor(crawl)
@@ -54,7 +53,7 @@ class CrawlScrapeExecutorTest : AbstractTest() {
     @Test
     @DisplayName("Deve pedir ao CrawlRepository para salvar Crawl com novo CrawlResult recebido quando executar scrape para um dado Crawl")
     fun shouldAskCrawlRepositoryToSaveCrawlWithReceivedNewResultWhenExecutingScrapeForThatCrawl() {
-        val scrapedUrls: List<String> = asList()
+        val scrapedUrls: List<String> = listOf()
         val crawl = Crawl.of(defaultId, status = CrawlStatus.ACTIVE.status, defaultKeyword, partialResult, scrapedUrls)
         `when`(webScraper.startKeywordScraping(keyword = eq(crawl.keyword))).thenReturn(crawl.result)
 
@@ -78,7 +77,7 @@ class CrawlScrapeExecutorTest : AbstractTest() {
     @Test
     @DisplayName("Deve aplicar novo CrawlResult no Crawl e mudar status para DONE quando receber result do scrape iniciado para um Crawl e não for um result parcial ao executar scrape para esse Crawl")
     fun shouldApplyNewCrawlResultOnCrawlAndChangeStatusToDoneWhenReceiveResultFromStartedScrapeForCrawlAndWasNotPartialResultOnExecutingScrapeForThatCrawl() {
-        val scrapedStringUrls: List<String> = asList()
+        val scrapedStringUrls: List<String> = listOf()
         val scrapedUrls: List<Url> = scrapedStringUrls.map { Url.of(url = it) }
         val crawl = Crawl.of(defaultId, status = CrawlStatus.ACTIVE.status, defaultKeyword, partialResult, scrapedUrls = scrapedStringUrls)
         val newCrawlResult = CrawlResult.of(keyword = crawl.keyword, notPartialResult, scrapedUrls)
@@ -104,7 +103,7 @@ class CrawlScrapeExecutorTest : AbstractTest() {
     @Test
     @DisplayName("Deve retornar CrawlResult obtido a partir da scrape da Keyword iniciada quando executando scrape para um Crawl")
     fun shouldReturnCrawlResultObtainedFromStartedKeywordScrapingWhenExecutingScrapeForCrawl() {
-        val scrapedStringUrls: List<String> = asList()
+        val scrapedStringUrls: List<String> = listOf()
         val scrapedUrls: List<Url> = scrapedStringUrls.map { Url.of(url = it) }
         val crawl = Crawl.of(defaultId, status = CrawlStatus.ACTIVE.status, defaultKeyword, partialResult, scrapedUrls = scrapedStringUrls)
         val newCrawlResult = CrawlResult.of(keyword = crawl.keyword, notPartialResult, scrapedUrls)

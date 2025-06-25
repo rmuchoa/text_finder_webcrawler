@@ -48,6 +48,8 @@ abstract class AbstractTest {
         protected const val three: Int = 3
         protected const val four: Int = 4
         protected const val hasUrl: Boolean = true
+        protected const val hasFound: Boolean = true
+        protected const val hasNotFound: Boolean = false
         protected const val notFinished: Boolean = true
         protected const val partialResult: Boolean = true
         protected const val notPartialResult: Boolean = false
@@ -57,6 +59,9 @@ abstract class AbstractTest {
         protected const val myLink: String = "http://myurl.com"
         protected const val mySecureLink: String = "https://mysecurelink.com"
         protected const val someExternalLink: String = "http://someexternal.com/link"
+        protected const val defaultKeywordPresentContent: String = "<div>$defaultKeyword</div>"
+        protected const val defaultKeywordNotPresentContent: String = "<div><p>$defaultId</p></div>"
+        protected const val emptyStringContent: String = ""
         protected const val QUEUE_NAME = "FAKE_QUEUE_NAME"
     }
 

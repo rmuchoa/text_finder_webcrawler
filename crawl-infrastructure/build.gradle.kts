@@ -15,6 +15,7 @@ dependencies {
     api(libs.springCloudAwsSqsStarter)
     api(libs.springCloudAwsDynamodbStarter)
     api(libs.jacksonKotlinModule)
+    implementation(libs.jsoupModule)
 
     implementation(project(":crawl-application"))
     implementation(project(":crawl-domain"))

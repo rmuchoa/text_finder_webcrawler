@@ -7,6 +7,12 @@ data class Keyword internal constructor(val keyword: String) {
 
     override fun toString(): String = keyword
 
+    fun checkPresenceOn(pageContent: String): Boolean =
+        pageContent.lowercase()
+            .takeIf { it.isNotBlank() }
+            ?.contains(other = keyword.lowercase())
+            ?: false
+
     companion object {
         fun of(keyword: String?) = Keyword(keyword = validKeyword(keyword))
 

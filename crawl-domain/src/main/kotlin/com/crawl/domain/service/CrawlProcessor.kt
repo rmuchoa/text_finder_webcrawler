@@ -21,12 +21,13 @@ open class CrawlProcessor(
         log.info("PROCESSING: Starting to execute scraping on crawl: {}", crawl)
         val result: CrawlResult = crawlScrapeExecutor.executeScrapeFor(crawl)
 
-        if (!result.partialResult) return
-
-        log.warn("PARTIAL RESULT: WebCrawler doesn't finished page navigation yet!")
-        throw UnfinishedWebCrawlingException(
-            message = "WebCrawler doesn't finished page navigation yet to reach a full result")
-
+        result.takeUnless { it.partialResult }?.also {
+            log.warn("FULL RESULT: WebCrawler completely finished page navigation!!!")
+        }?: run {
+            log.warn("PARTIAL RESULT: WebCrawler doesn't finished page navigation yet!")
+            throw UnfinishedWebCrawlingException(
+                message = "WebCrawler doesn't finished page navigation yet to reach a full result")
+        }
     }
 
 }

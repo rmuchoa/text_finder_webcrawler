@@ -2,7 +2,6 @@ package com.crawl.domain.entity
 
 import com.crawl.domain.values.Keyword
 import com.crawl.domain.values.Url
-import java.util.Arrays.asList
 
 data class CrawlResult(
     val keyword: Keyword,
@@ -15,7 +14,7 @@ data class CrawlResult(
     }
 
     fun getExistentScrapedUrls(): List<Url> {
-        return scrapedUrls?.takeIf { it.isNotEmpty() } ?: asList()
+        return scrapedUrls?.takeIf { it.isNotEmpty() } ?: listOf()
     }
 
     companion object {

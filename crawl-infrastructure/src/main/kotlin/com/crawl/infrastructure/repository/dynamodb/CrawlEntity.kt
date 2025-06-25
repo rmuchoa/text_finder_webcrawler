@@ -5,6 +5,7 @@ import com.crawl.domain.entity.CrawlIntention
 import com.crawl.domain.values.CrawlStatus
 import com.crawl.domain.values.Id
 import com.crawl.domain.values.Keyword
+import com.crawl.domain.values.Url
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbBean
 import software.amazon.awssdk.enhanced.dynamodb.mapper.annotations.DynamoDbPartitionKey
 
@@ -50,12 +51,12 @@ data class CrawlEntity(
             status: CrawlStatus,
             keyword: Keyword,
             partialResult: Boolean,
-            scrapedUrls: List<String>) = CrawlEntity(
+            scrapedUrls: List<Url>) = CrawlEntity(
             id = id.toString(),
             status = status.toString(),
             keyword = keyword.toString(),
             partialResult = partialResult,
-            scrapedUrls = scrapedUrls)
+            scrapedUrls = scrapedUrls.map { it.url })
     }
 
 }
