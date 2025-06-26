@@ -1,5 +1,6 @@
 package com.crawl.infrastructure.notification
 
+import com.crawl.application.notification.CrawlNotification
 import com.crawl.application.notification.CrawlNotificationDeliver
 import com.crawl.domain.values.Id
 import com.crawl.infrastructure.notification.sqs.SqsAsyncNotificationBroker
@@ -22,19 +23,26 @@ class CrawlNotificationDeliverImpl(
 
     override fun notifyIntentedCrawl(id: Id) {
 
-        val notification = CrawlNotification(id)
-        val jsonMessage = Json.encodeToString<CrawlNotification>(value = notification)
+        val notification = CrawlNotificationDTO(id)
 
         log.info("Notifying intented crawl {} on {}", id, queueName)
-        sqsAsyncNotificationBroker.notifyMessage(jsonMessage, queueName)
-
-        log.info("Notification sent for crawl {} on {}", id, queueName)
+        notifyCrawlMessage(notification, delaySeconds = 0)
     }
 
-    override fun requeueUnfinishedCrawl(id: Id) {
+    override fun requeueUnfinishedCrawl(notification: CrawlNotification) {
 
-        log.info("Requeuing unfinished crawl {} to restart scraping!", id)
-        notifyIntentedCrawl(id)
+        val retryNotification = notification.retry() as CrawlNotificationDTO
+
+        log.info("Notifying unfinished crawl {} on {} to restart scraping!", retryNotification.getId(), queueName)
+        notifyCrawlMessage(notification = retryNotification, delaySeconds = 30)
+    }
+
+    private fun notifyCrawlMessage(notification: CrawlNotificationDTO, delaySeconds: Int) {
+
+        val jsonMessage = Json.encodeToString<CrawlNotificationDTO>(value = notification)
+
+        sqsAsyncNotificationBroker.notifyMessage(jsonMessage, queueName, delaySeconds)
+        log.info("Notification sent for crawl {} on {}", notification.getId(), queueName)
     }
 
 }

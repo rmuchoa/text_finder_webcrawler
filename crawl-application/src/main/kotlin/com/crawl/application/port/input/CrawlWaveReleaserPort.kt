@@ -1,7 +1,7 @@
 package com.crawl.application.port.input
 
-import com.crawl.domain.values.Id
+import com.crawl.application.notification.CrawlNotification
 
 interface CrawlWaveReleaserPort {
-    fun releaseWave(crawlId: Id)
+    fun releaseWave(notification: CrawlNotification)
 }

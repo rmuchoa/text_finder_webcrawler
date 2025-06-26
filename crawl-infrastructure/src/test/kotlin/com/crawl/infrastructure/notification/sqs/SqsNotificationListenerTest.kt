@@ -25,7 +25,7 @@ class SqsNotificationListenerTest : AbstractTest() {
     }
 
     @Test
-    @DisplayName("Deve pedir ao recebedor de notificações para receber uma mensagem quando escutar uma mensage via SQS")
+    @DisplayName("Deve pedir ao recebedor de notificações para receber uma mensagem quando escutar uma mensagem via SQS")
     fun shouldAskNotificationReceiverToReceiveListenedMessageWhenListeningSomeMessage() {
         val message = "{\"id\":\"$defaultId\"}"
 

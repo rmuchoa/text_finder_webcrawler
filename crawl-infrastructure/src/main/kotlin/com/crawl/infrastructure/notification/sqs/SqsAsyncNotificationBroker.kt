@@ -11,7 +11,7 @@ class SqsAsyncNotificationBroker(
 
     var log: Logger = LoggerFactory.getLogger(SqsAsyncNotificationBroker::class.java)
 
-    fun notifyMessage(message: String, queueName: String) {
+    fun notifyMessage(message: String, queueName: String, delaySeconds: Int) {
 
         log.debug("Finding queue url for {} to start notifying", queueName)
         val queueUrl = sqsAsyncClient.getQueueUrl {
@@ -22,6 +22,7 @@ class SqsAsyncNotificationBroker(
         sqsAsyncClient.sendMessage {
             it.queueUrl(queueUrl)
                 .messageBody(message)
+                .delaySeconds(delaySeconds)
         }
 
         log.debug("Notification sent on queue: {} message: {}", queueUrl, message)

@@ -14,10 +14,10 @@ class CrawlNotificationReceiver(
 
     fun receive(message: String) {
 
-        val notification = Json.decodeFromString<CrawlNotification>(string = message)
+        val notification = Json.decodeFromString<CrawlNotificationDTO>(string = message)
         log.info("Notification received from crawl {}", notification.id)
 
-        waveProcessorPort.releaseWave(crawlId = notification.getId())
+        waveProcessorPort.releaseWave(notification)
 
     }
 
