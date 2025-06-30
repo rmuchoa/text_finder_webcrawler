@@ -11,7 +11,7 @@ open class CrawlProcessor(
     val repository: CrawlRepositoryPort,
     val crawlScrapeExecutor: CrawlScrapeExecutor) {
 
-    var log: Logger = LoggerFactory.getLogger(CrawlProcessor::class.java)
+    var log: Logger = LoggerFactory.getLogger(this::class.java)
 
     fun loadAndProcess(crawlId: Id) {
 

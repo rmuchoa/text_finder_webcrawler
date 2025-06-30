@@ -13,7 +13,7 @@ open class CrawlWaveReleaser(
     val notificationDeliver: CrawlNotificationDeliver
 ) : CrawlWaveReleaserPort {
 
-    var log: Logger = LoggerFactory.getLogger(CrawlWaveReleaser::class.java)
+    var log: Logger = LoggerFactory.getLogger(this::class.java)
 
     override fun releaseWave(notification: CrawlNotification) {
         runCatching {

@@ -12,7 +12,7 @@ open class CrawlInputAdapter(
     val crawlIntentor: CrawlIntentor):
     CrawlInputPort {
 
-    val log: Logger = LoggerFactory.getLogger(CrawlInputAdapter::class.java)
+    val log: Logger = LoggerFactory.getLogger(this::class.java)
 
     override fun requestCrawl(request: CrawlRequest): RequestedCrawl {
 

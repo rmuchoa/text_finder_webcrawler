@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 @Component
 class JsoupWebClient {
 
-    val log: Logger = LoggerFactory.getLogger(JsoupWebClient::class.java)
+    val log: Logger = LoggerFactory.getLogger(this::class.java)
 
     fun getPageFromUrl(url: Url): WebPage? {
 

@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 class CrawlNotificationReceiver(
     val waveProcessorPort: CrawlWaveReleaserPort) {
 
-    var log: Logger = LoggerFactory.getLogger(CrawlNotificationReceiver::class.java)
+    var log: Logger = LoggerFactory.getLogger(this::class.java)
 
     fun receive(message: String) {
 

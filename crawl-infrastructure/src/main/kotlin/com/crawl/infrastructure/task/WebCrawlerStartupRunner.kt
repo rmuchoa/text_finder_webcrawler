@@ -11,7 +11,7 @@ class WebCrawlerStartupRunner(
     val taskRunner: WebCrawlerTaskRunner
 ) : ApplicationRunner {
 
-    var log: Logger = LoggerFactory.getLogger(WebCrawlerStartupRunner::class.java)
+    var log: Logger = LoggerFactory.getLogger(this::class.java)
 
     override fun run(args: ApplicationArguments?) {
 

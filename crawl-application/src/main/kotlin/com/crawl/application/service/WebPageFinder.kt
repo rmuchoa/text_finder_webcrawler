@@ -12,7 +12,7 @@ open class WebPageFinder(
     val externalRepository: WebPageExternalRepositoryPort,
     val internalRepository: WebPageInternalRepositoryPort) {
 
-    val log: Logger = LoggerFactory.getLogger(WebPageFinder::class.java)
+    val log: Logger = LoggerFactory.getLogger(this::class.java)
 
     fun findWebPageByUrl(url: Url): WebPageDocument? {
 

@@ -16,7 +16,7 @@ class CrawlNotificationDeliverImpl(
     private val sqsAsyncNotificationBroker: SqsAsyncNotificationBroker):
     CrawlNotificationDeliver {
 
-    var log: Logger = LoggerFactory.getLogger(CrawlNotificationDeliverImpl::class.java)
+    var log: Logger = LoggerFactory.getLogger(this::class.java)
 
     @Value("\${spring.cloud.aws.sqs.crawl-queue}")
     lateinit var queueName: String

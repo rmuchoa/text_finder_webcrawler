@@ -14,7 +14,7 @@ class WebPageExternalClientAdapter(
     val client: JsoupWebClient
 ) : WebPageExternalRepositoryPort {
 
-    val log: Logger = LoggerFactory.getLogger(WebPageExternalClientAdapter::class.java)
+    val log: Logger = LoggerFactory.getLogger(this::class.java)
 
     override fun getPageDocumentFromUrl(url: Url): WebPageDocument? {
         log.info("WEB PAGE CLIENT: Starting to load web page from url: {}", url)

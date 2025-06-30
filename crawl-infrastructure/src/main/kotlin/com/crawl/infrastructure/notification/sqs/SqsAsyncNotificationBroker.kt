@@ -9,7 +9,7 @@ import software.amazon.awssdk.services.sqs.SqsAsyncClient
 class SqsAsyncNotificationBroker(
     private val sqsAsyncClient: SqsAsyncClient) {
 
-    var log: Logger = LoggerFactory.getLogger(SqsAsyncNotificationBroker::class.java)
+    var log: Logger = LoggerFactory.getLogger(this::class.java)
 
     fun notifyMessage(message: String, queueName: String, delaySeconds: Int) {
 

@@ -13,19 +13,19 @@ class WebCrawlerTaskRunner(
     val webCrawler: WebCrawler
 ) {
 
-    var log: Logger = LoggerFactory.getLogger(WebCrawlerTaskRunner::class.java)
+    var log: Logger = LoggerFactory.getLogger(this::class.java)
 
     fun runCrawlingTasks() {
 
-        repeat(times = WebCrawlerTaskConfiguration.MAX_TASKS_CAPACITY) {
+        repeat(times = WebCrawlerTaskConfiguration.MAX_TASKS_CAPACITY) { taskId ->
             taskExecutor.execute {
                 try {
 
                     log.info("WEB CRAWLER TASK RUNNER: Executing web crawling on thread ${Thread.currentThread().name}")
-                    webCrawler.executeCrawl()
+                    webCrawler.executeCrawl(taskId)
 
-                } catch (e: Exception) {
-                    log.error("WEB CRAWLER TASK RUNNER: Some error occurred on web crawling on thread ${Thread.currentThread().name}: ${e.message}")
+                } catch (exception: Exception) {
+                    log.error("WEB CRAWLER TASK RUNNER: Some error occurred on web crawling on thread ${Thread.currentThread().name}: ${exception.message}")
                 }
             }
         }

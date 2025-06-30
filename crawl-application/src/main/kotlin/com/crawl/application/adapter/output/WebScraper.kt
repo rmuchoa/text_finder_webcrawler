@@ -15,7 +15,7 @@ open class WebScraper(
     val visitedUrlRepository: VisitedUrlRepositoryPort
 ) : WebScraperPort {
 
-    val log: Logger = LoggerFactory.getLogger(WebScraper::class.java)
+    val log: Logger = LoggerFactory.getLogger(this::class.java)
 
     override fun startKeywordScraping(keyword: Keyword): CrawlResult {
 

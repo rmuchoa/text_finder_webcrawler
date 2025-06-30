@@ -10,7 +10,7 @@ open class CrawlIntentor(
     val repository: CrawlRepositoryPort,
     val deliver: CrawlNotificationDeliverPort) {
 
-    var log: Logger = LoggerFactory.getLogger(CrawlIntentor::class.java)
+    var log: Logger = LoggerFactory.getLogger(this::class.java)
 
     fun intent(crawlIntention: CrawlIntention): CrawlIntention {
 

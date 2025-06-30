@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service
 class SqsNotificationListener(
     val notificationReceiver: CrawlNotificationReceiver) {
 
-    var log: Logger = LoggerFactory.getLogger(SqsNotificationListener::class.java)
+    var log: Logger = LoggerFactory.getLogger(this::class.java)
 
     @Value("\${spring.cloud.aws.sqs.crawl-queue}")
     lateinit var queueName: String

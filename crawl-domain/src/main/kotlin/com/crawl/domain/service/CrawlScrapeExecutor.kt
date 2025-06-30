@@ -11,7 +11,7 @@ open class CrawlScrapeExecutor(
     val repository: CrawlRepositoryPort,
     val webScraper: WebScraperPort) {
 
-    val log: Logger = LoggerFactory.getLogger(CrawlScrapeExecutor::class.java)
+    val log: Logger = LoggerFactory.getLogger(this::class.java)
 
     fun executeScrapeFor(crawl: Crawl): CrawlResult {
 
