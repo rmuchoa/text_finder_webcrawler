@@ -1,31 +1,32 @@
 package com.crawl.infrastructure.task
 
 import com.crawl.application.service.WebCrawler
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.supervisorScope
+import com.crawl.infrastructure.configuration.WebCrawlerTaskConfiguration
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor
 import org.springframework.stereotype.Component
 
 @Component
 class WebCrawlerTaskRunner(
-    val dispatcher: CoroutineDispatcher,
+    val taskExecutor: ThreadPoolTaskExecutor,
     val webCrawler: WebCrawler
 ) {
 
-    var log: Logger = LoggerFactory.getLogger(this::class.java)
+    var log: Logger = LoggerFactory.getLogger(WebCrawlerTaskRunner::class.java)
 
-    suspend fun runCrawlingTask(taskId: Int) = supervisorScope {
+    fun runCrawlingTasks() {
 
-        launch(context = dispatcher) {
-            try {
+        repeat(times = WebCrawlerTaskConfiguration.MAX_TASKS_CAPACITY) {
+            taskExecutor.execute {
+                try {
 
-                log.info("WEB CRAWLER TASK RUNNER: Executing web crawling task $taskId on thread ${Thread.currentThread().name}")
-                webCrawler.executeCrawl(taskId)
+                    log.info("WEB CRAWLER TASK RUNNER: Executing web crawling on thread ${Thread.currentThread().name}")
+                    webCrawler.executeCrawl()
 
-            } catch (exception: Exception) {
-                log.error("WEB CRAWLER TASK RUNNER: Some error occurred on web crawling task $taskId  on thread ${Thread.currentThread().name}: ${exception.message}")
+                } catch (e: Exception) {
+                    log.error("WEB CRAWLER TASK RUNNER: Some error occurred on web crawling on thread ${Thread.currentThread().name}: ${e.message}")
+                }
             }
         }
     }

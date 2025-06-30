@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 @Component
 class WebCrawlerThreadScaler(val taskExecutor: ThreadPoolTaskExecutor) {
 
-    var log: Logger = LoggerFactory.getLogger(this::class.java)
+    var log: Logger = LoggerFactory.getLogger(WebCrawlerThreadScaler::class.java)
 
     @Scheduled(fixedDelay = WebCrawlerTaskConfiguration.TEN_SECONDS_DELAY)
     fun scaleUp() {
