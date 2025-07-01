@@ -1,7 +1,7 @@
 package com.crawl.infrastructure.notification.sqs
 
 import com.crawl.domain.AbstractTest
-import com.crawl.infrastructure.notification.CrawlNotificationReceiver
+import com.crawl.infrastructure.notification.ScrapeNotificationReceiver
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -15,7 +15,7 @@ import org.mockito.kotlin.eq
 @ExtendWith(MockitoExtension::class)
 class SqsNotificationListenerTest : AbstractTest() {
 
-    @Mock private lateinit var notificationReceiver: CrawlNotificationReceiver
+    @Mock private lateinit var notificationReceiver: ScrapeNotificationReceiver
     private lateinit var listener: SqsNotificationListener
 
     @BeforeEach

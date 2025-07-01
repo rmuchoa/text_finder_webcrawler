@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/crawl")
-class CrawlAPIController(val inputPort: ScrapeInputPort) {
+@RequestMapping("/scrape")
+class ScrapeAPIController(val inputPort: ScrapeInputPort) {
 
     @PostMapping()
-    fun requestCrawl(@RequestBody request: ScrapeRequest): ResponseEntity<RequestedScrape> {
+    fun requestScrape(@RequestBody request: ScrapeRequest): ResponseEntity<RequestedScrape> {
         val requestedScrape: RequestedScrape? = inputPort.requestScrape(request)
 
         return requestedScrape?.let {

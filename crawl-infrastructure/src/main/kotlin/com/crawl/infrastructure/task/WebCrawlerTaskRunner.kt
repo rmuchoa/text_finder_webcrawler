@@ -22,7 +22,7 @@ class WebCrawlerTaskRunner(
                 try {
 
                     log.info("WEB CRAWLER TASK RUNNER: Executing web crawling on thread ${Thread.currentThread().name}")
-                    webCrawler.executeCrawl(taskId)
+                    webCrawler.executeCrawl()
 
                 } catch (exception: Exception) {
                     log.error("WEB CRAWLER TASK RUNNER: Some error occurred on web crawling on thread ${Thread.currentThread().name}: ${exception.message}")

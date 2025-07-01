@@ -9,6 +9,8 @@ spring:
       sqs:
         endpoint: "${SQS_ENDPOINT:http://localhost:4566}"
         crawl-queue: "CrawlNotificationQueue"
+        scrape-queue: "ScrapeNotificationQueue"
         crawl-queue-dlq: "CrawlNotificationQueue_DLQ"
+        scrape-queue-dlq: "ScrapeNotificationQueue_DLQ"
       dynamodb:
         endpoint: "${DYNAMODB_ENDPOINT:http://localhost:4566}"

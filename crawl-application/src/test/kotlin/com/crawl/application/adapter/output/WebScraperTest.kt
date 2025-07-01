@@ -3,7 +3,7 @@ package com.crawl.application.adapter.output
 import com.crawl.application.port.output.VisitedUrlRepositoryPort
 import com.crawl.application.service.WebPageFinder
 import com.crawl.domain.AbstractTest
-import com.crawl.domain.entity.CrawlResult
+import com.crawl.domain.entity.ScrapeResult
 import com.crawl.domain.entity.WebPageDocument
 import com.crawl.domain.values.Keyword
 import com.crawl.domain.values.Url
@@ -69,7 +69,7 @@ class WebScraperTest : AbstractTest() {
         val result = webScraper.startKeywordScraping(keyword)
 
         assertThat(result,allOf(
-            instanceOf(CrawlResult::class.java),
+            instanceOf(ScrapeResult::class.java),
             hasProperty("keyword", instanceOf<Keyword>(Keyword::class.java)),
             hasProperty("partialResult", allOf(
                 instanceOf(Boolean::class.java),
@@ -133,7 +133,7 @@ class WebScraperTest : AbstractTest() {
         val result = webScraper.startKeywordScraping(keyword)
 
         assertThat(result,allOf(
-            instanceOf(CrawlResult::class.java),
+            instanceOf(ScrapeResult::class.java),
             hasProperty("keyword", instanceOf<Keyword>(Keyword::class.java)),
             hasProperty("partialResult", allOf(
                 instanceOf(Boolean::class.java),
@@ -157,7 +157,7 @@ class WebScraperTest : AbstractTest() {
         val result = webScraper.startKeywordScraping(keyword)
 
         assertThat(result,allOf(
-            instanceOf(CrawlResult::class.java),
+            instanceOf(ScrapeResult::class.java),
             hasProperty("keyword", instanceOf<Keyword>(Keyword::class.java)),
             hasProperty("partialResult", allOf(
                 instanceOf(Boolean::class.java),
@@ -181,7 +181,7 @@ class WebScraperTest : AbstractTest() {
         val result = webScraper.startKeywordScraping(keyword)
 
         assertThat(result,allOf(
-            instanceOf(CrawlResult::class.java),
+            instanceOf(ScrapeResult::class.java),
             hasProperty("keyword", instanceOf<Keyword>(Keyword::class.java)),
             hasProperty("partialResult", allOf(
                 instanceOf(Boolean::class.java),

@@ -2,7 +2,7 @@ package com.crawl.application.adapter.output
 
 import com.crawl.application.port.output.VisitedUrlRepositoryPort
 import com.crawl.application.service.WebPageFinder
-import com.crawl.domain.entity.CrawlResult
+import com.crawl.domain.entity.ScrapeResult
 import com.crawl.domain.entity.WebPageDocument
 import com.crawl.domain.port.output.WebScraperPort
 import com.crawl.domain.values.Keyword
@@ -17,13 +17,13 @@ open class WebScraper(
 
     val log: Logger = LoggerFactory.getLogger(this::class.java)
 
-    override fun startKeywordScraping(keyword: Keyword): CrawlResult {
+    override fun startKeywordScraping(keyword: Keyword): ScrapeResult {
 
         val allVisitedUrl: List<Url> = visitedUrlRepository.listAllVisitedUrls()
 
         log.info("WEB SCRAPER: Starting to scrape for keyword {} on loaded web pages! crawledUrls {}", keyword, allVisitedUrl.size)
 
-        val result = CrawlResult.of(
+        val result = ScrapeResult.of(
             keyword,
             partialResult = visitedUrlRepository.doesNotFinishedNavigationYet(),
             scrapedUrls = allVisitedUrl
